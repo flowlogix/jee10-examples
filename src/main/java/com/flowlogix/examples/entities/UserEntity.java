@@ -23,9 +23,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.omnifaces.persistence.model.BaseEntity;
 
 /**
  *
@@ -33,12 +31,10 @@ import org.omnifaces.persistence.model.BaseEntity;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-// BaseEntity inheritance is not necessary for the FlowLogix JPALazyDataModel variant
-public class UserEntity extends BaseEntity<Long> implements Serializable {
+public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

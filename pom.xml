@@ -7,6 +7,12 @@
     <packaging>war</packaging>
     <name>JEE 10 Services and PrimeFaces Examples</name>
 
+    <parent>
+        <groupId>com.flowlogix</groupId>
+        <artifactId>flowlogix</artifactId>
+        <version>5.2.0-shiro2-m2</version>
+    </parent>
+
     <!-- parent is only present for testing profiles -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,8 +22,12 @@
         <maven.compiler.source>${maven.compiler.release}</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
 
-        <flowlogix.version>5.2.0-shiro2-m1</flowlogix.version>
+        <checkstyle.skip>true</checkstyle.skip>
+        <groups>none(),UserInterface</groups>
+
+        <flowlogix.version>5.2.0-shiro2-m2</flowlogix.version>
         <arquillian.version>1.7.0.Alpha13</arquillian.version>
+        <shiro.version>2.0.0-lp-nov20</shiro.version>
     </properties>
 
     <dependencies>
@@ -32,17 +42,32 @@
             <artifactId>shiro-ee</artifactId>
             <version>${flowlogix.version}</version>
             <classifier>jakarta</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.flowlogix</groupId>
+                    <artifactId>flowlogix-jee</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.shiro</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.flowlogix</groupId>
             <artifactId>flowlogix-datamodel</artifactId>
             <version>${flowlogix.version}</version>
             <classifier>jakarta</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>optimusfaces</artifactId>
-            <version>0.16.J1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.flowlogix</groupId>
+                    <artifactId>flowlogix-jee</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.primefaces</groupId>
+                    <artifactId>primefaces</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.omnifaces</groupId>
@@ -86,10 +111,14 @@
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -174,6 +203,9 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <groups>${groups}</groups>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -248,6 +280,17 @@
                     </includeOnlyProperties>
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 

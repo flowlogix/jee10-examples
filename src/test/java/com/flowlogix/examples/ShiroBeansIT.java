@@ -118,7 +118,7 @@ public class ShiroBeansIT {
                 "anonymous user should get an exception");
         webDriver.get(baseURL + "lastException");
         assertTrue(webDriver.findElement(By.tagName("body")).getText()
-                .startsWith(jakartify("WARNING: javax.ejb.EJBException: Attempting to perform a user-only operation")),
+                .startsWith(jakartify("WARNING: jakarta.ejb.EJBException: Attempting to perform a user-only operation")),
                 "capturing correct warning from the server");
     }
 
@@ -144,7 +144,7 @@ public class ShiroBeansIT {
     @Test
     @OperateOnDeployment(DEPLOYMENT_DEV_MODE)
     void beanDestroyCalled() {
-        exersizeViewAndSessionScoped(facesViewScoped, "api/statistics/pc_fv", "api/statistics/pd_fv", true);
+        exersizeViewAndSessionScoped(facesViewScoped, "api/statistics/pc_fv", "api/statistics/pd_fv", false);
         webDriver.get(baseURL + "api/statistics/clear");
         exersizeViewAndSessionScoped(omniViewScoped, "api/statistics/pc_ofv", "api/statistics/pd_ofv", false);
     }
