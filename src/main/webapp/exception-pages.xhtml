@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Exception Pages Example</title>
+        <h:outputScript name="components.js" library="primefaces"/>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p>
+                <input type="button" id="invalidate" value="Invalidate session via Servlet"
+                       onclick="invalidateSession('#{request.contextPath}/invalidatesession')" />
+            </p>
+            <p/>
+            <h:commandButton id="closeByIntr" value="Throw ClosedByInterruptException" action="#{exceptionBean.throwClosedByInterruptException(true)}">
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <p/>
+            <h:commandButton id="closeByIntrNoRespComplete" value="Throw ClosedByInterruptException - no responseComplete()"
+                             action="#{exceptionBean.throwClosedByInterruptException(false)}">
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <p/>
+            <h:commandButton id="lateSqlThrow" value="Throw SQL Exception Late (before response)" action="#{exceptionBean.throwSqlBeforeResponse()}" >
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <p/>
+            <h:commandButton id="noAction" value="no action" action="#{exceptionBean.success()}" >
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <p/>
+            <h:commandButton id="methodSqlThrow" value="throw SQL exception from method" action="#{exceptionBean.throwExceptionFromMethod()}" >
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <p/>
+            <h:commandButton value="Invalidate Session via Faces" action="#{exceptionBean.invalidateSession()}" >
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+            <p/>
+            <h:outputText value="Session: #{exceptionBean.sessionValue} Version #{environmentInfo.version}"/>
+            <p/>
+            Security Status: <span id="isExpired"> #{exceptionBean.expired()} </span>
+        </h:form>
+        <p/>
+        ProjectStage:
+        <span id="mode">
+            #{facesContext.application.projectStage}
+        </span>
+        <p/>
+        isClientStateSaving:
+        <span id="stateSaving">
+            #{facesContext.application.stateManager.isSavingStateInClient(facesContext)}
+        </span>
+        <p/>
+        <span id="end-of-page">
+            <h:outputScript name="test-resource.js"/>
+        </span>
+    </h:body>
+    <script type="text/javascript">
+        const invalidateSession = async (path) => {
+            const response = await fetch(path);
+            const strresp = await response.text();
+            alert('Session invalidated!');
+        };
+    </script>
+</html>
