@@ -118,7 +118,7 @@ public class ShiroBeansIT {
                 "anonymous user should get an exception");
         webDriver.get(baseURL + "lastException");
         assertTrue(webDriver.findElement(By.tagName("body")).getText()
-                .startsWith(jakartify("WARNING: jakarta.ejb.EJBException: Attempting to perform a user-only operation")),
+                .startsWith(jakartify("WARNING: javax.ejb.EJBException: Attempting to perform a user-only operation")),
                 "capturing correct warning from the server");
     }
 

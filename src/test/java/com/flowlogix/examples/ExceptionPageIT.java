@@ -156,9 +156,9 @@ public class ExceptionPageIT {
         assertEquals("Exception type: class java.sql.SQLException", exceptionTypeField.getText());
         webDriver.get(baseURL + "lastException");
         assertTrue(webDriver.findElement(By.tagName("body")).getText().matches(
-                jakartify("^WARNING: jakarta\\.faces\\.FacesException: "
-                        + "#\\{exceptionBean\\.throwExceptionFromMethod\\(\\)\\}: .*")
-                + "java\\.sql\\.SQLException: sql-from-method$"));
+                jakartify("^WARNING: javax.faces.FacesException: "
+                        + "#\\{exceptionBean.throwExceptionFromMethod\\(\\)\\}: .*")
+                + "java.sql.SQLException: sql-from-method$".replaceAll("\\.", "\\.")));
     }
 
     @Test
@@ -224,7 +224,7 @@ public class ExceptionPageIT {
                 .loadPomFromFile("pom.xml").importBuildOutput()
                 .as(WebArchive.class);
         var productionList = List.of(new Action(
-                jakartify("//web-app/context-param[param-name = 'jakarta.faces.PROJECT_STAGE']/param-value"),
+                jakartify("//web-app/context-param[param-name = 'javax.faces.PROJECT_STAGE']/param-value"),
                 node -> node.setTextContent("Production")));
         new ShrinkWrapManipulator().webXmlXPath(archive, Stream.concat(productionList.stream(),
                 getStandardActions().stream()).collect(Collectors.toList()));
