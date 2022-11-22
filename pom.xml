@@ -23,6 +23,7 @@
         <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
 
         <checkstyle.skip>true</checkstyle.skip>
+        <jacoco.skip>true</jacoco.skip>
         <groups>none(),UserInterface</groups>
 
         <flowlogix.version>5.2.0-shiro2-m4</flowlogix.version>
