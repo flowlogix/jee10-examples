@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.flowlogix</groupId>
         <artifactId>flowlogix</artifactId>
-        <version>5.2.0-shiro2-m2</version>
+        <version>5.2.0-shiro2-m4</version>
     </parent>
 
     <!-- parent is only present for testing profiles -->
@@ -25,7 +25,7 @@
         <checkstyle.skip>true</checkstyle.skip>
         <groups>none(),UserInterface</groups>
 
-        <flowlogix.version>5.2.0-shiro2-m2</flowlogix.version>
+        <flowlogix.version>5.2.0-shiro2-m4</flowlogix.version>
         <arquillian.version>1.7.0.Alpha13</arquillian.version>
         <shiro.version>2.0.0-lp-nov21-2</shiro.version>
     </properties>
