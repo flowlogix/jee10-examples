@@ -18,7 +18,7 @@
         <jdk11FailsafeOptions>--add-opens java.base/java.lang=ALL-UNNAMED</jdk11FailsafeOptions>
         <webdriver.browser>chromeheadless</webdriver.browser>
 
-        <flowlogix.version>5.2.0-shiro2-m5</flowlogix.version>
+        <flowlogix.version>5.1.2</flowlogix.version>
         <arquillian.version>1.7.0.Alpha13</arquillian.version>
         <shiro.version>2.0.0-lp-nov21-2</shiro.version>
     </properties>
@@ -34,7 +34,7 @@
             <groupId>com.flowlogix</groupId>
             <artifactId>shiro-ee</artifactId>
             <version>${flowlogix.version}</version>
-            <classifier>jakarta</classifier>
+            <classifier>jakarta-shiro2</classifier>
             <exclusions>
                 <exclusion>
                     <groupId>com.flowlogix</groupId>
@@ -112,6 +112,12 @@
             <artifactId>shiro-web</artifactId>
             <version>${shiro.version}</version>
             <classifier>jakarta</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.shiro</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
