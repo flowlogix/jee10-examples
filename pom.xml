@@ -20,7 +20,7 @@
 
         <flowlogix.version>5.1.4</flowlogix.version>
         <arquillian.version>1.7.0.Alpha13</arquillian.version>
-        <shiro.version>2.0.0-lp-nov21-2</shiro.version>
+        <shiro.version>2.0.0-lp-nov30</shiro.version>
     </properties>
 
     <dependencies>
