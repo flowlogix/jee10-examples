@@ -18,7 +18,7 @@
         <jdk11FailsafeOptions>--add-opens java.base/java.lang=ALL-UNNAMED</jdk11FailsafeOptions>
         <webdriver.browser>chromeheadless</webdriver.browser>
 
-        <flowlogix.version>5.1.4</flowlogix.version>
+        <flowlogix.version>5.1.5</flowlogix.version>
         <arquillian.version>1.7.0.Alpha13</arquillian.version>
         <shiro.version>2.0.0-lp-nov30</shiro.version>
     </properties>
@@ -34,7 +34,7 @@
             <groupId>com.flowlogix</groupId>
             <artifactId>shiro-ee</artifactId>
             <version>${flowlogix.version}</version>
-            <classifier>jakarta-shiro2</classifier>
+            <classifier>shiro2</classifier>
             <exclusions>
                 <exclusion>
                     <groupId>com.flowlogix</groupId>
