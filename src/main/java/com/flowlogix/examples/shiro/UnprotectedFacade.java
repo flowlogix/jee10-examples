@@ -15,8 +15,6 @@
  */
 package com.flowlogix.examples.shiro;
 
-import static com.flowlogix.shiro.ee.cdi.ShiroScopeContext.isWebContainerSessions;
-import com.flowlogix.shiro.ee.filters.Forms;
 import java.util.Map;
 import jakarta.ejb.EJBException;
 import jakarta.enterprise.inject.Model;
@@ -24,6 +22,8 @@ import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthenticatedException;
+import static org.apache.shiro.ee.cdi.ShiroScopeContext.isWebContainerSessions;
+import org.apache.shiro.ee.filters.Forms;
 import static org.omnifaces.util.Exceptions.unwrap;
 import org.omnifaces.util.Messages;
 

@@ -15,8 +15,8 @@
  */
 package com.flowlogix.examples.shiro;
 
-import com.flowlogix.shiro.ee.filters.Forms.FallbackPredicate;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.shiro.ee.filters.Forms.FallbackPredicate;
 
 /**
  *

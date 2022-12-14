@@ -15,11 +15,11 @@
  */
 package com.flowlogix.examples.shiro;
 
-import com.flowlogix.shiro.ee.filters.Forms;
 import jakarta.enterprise.inject.Model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.ee.filters.Forms;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
